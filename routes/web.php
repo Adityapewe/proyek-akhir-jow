@@ -25,3 +25,7 @@ Route::get('person', 'PersonController@index');
 Route::get('/person/show/{param}', 'PersonController@index');
 
 Route::resource('student', 'StudentController');
+
+Route::get('/person/send-data', 'PersonController@sendData');
+
+Route::get('/person/my-course/{course}/{task}/{quiz}/{mid_term}/{final}', 'PersonController@myCourse');
