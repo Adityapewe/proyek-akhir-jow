@@ -29,3 +29,9 @@ Route::resource('student', 'StudentController');
 Route::get('/person/send-data', 'PersonController@sendData');
 
 Route::get('/person/my-course/{course}/{task}/{quiz}/{mid_term}/{final}', 'PersonController@myCourse');
+
+//method GET
+Route::get('person/create', 'PersonController@create')->name('person.create');
+
+//methode POST
+Route::post('person/create', 'PersonController@store')->name('person.store');
