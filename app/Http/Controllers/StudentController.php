@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Student;
 
 class StudentController extends Controller
 {
@@ -11,9 +12,12 @@ class StudentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return 'Ini Index';
+    public function index(){
+        //$students = Student::all();
+        
+        $students = Student::where('id', '<=', '5')->get();
+
+        return view('student.index', ['student' => $students]);
     }
 
     /**

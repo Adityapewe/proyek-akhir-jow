@@ -35,3 +35,6 @@ Route::get('person/create', 'PersonController@create')->name('person.create');
 
 //methode POST
 Route::post('person/create', 'PersonController@store')->name('person.store');
+
+Route::get('student/index', 'StudentController@index')->name('student.index');
+
