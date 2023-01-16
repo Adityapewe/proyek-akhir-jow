@@ -38,3 +38,12 @@ Route::post('person/create', 'PersonController@store')->name('person.store');
 
 Route::get('student/index', 'StudentController@index')->name('student.index');
 
+Route::get('student', 'StudentController@index');
+Route::get('student/create', 'StudentController@create');
+Route::post('student/store', 'StudentController@store');
+Route::delete('student/{id}/delete', 'StudentController@destroy');
+Route::post('student/edit/{id}', 'StudentController@update');
+Route::get('student/edit/{id}', 'StudentController@edit');
+
+
+

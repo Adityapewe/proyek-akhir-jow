@@ -13,9 +13,7 @@ class StudentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        //$students = Student::all();
-        
-        $students = Student::where('id', '<=', '5')->get();
+        $students = Student::all();
 
         return view('student.index', ['student' => $students]);
     }
@@ -27,7 +25,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return 'Ini Create';
+        return view('student/create');
     }
 
     /**
@@ -38,7 +36,23 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'code'=>'required',
+            'name'=>'required',
+            'gender'=>'required',
+            'birth_place'=>'required',
+            'birth_date'=>'required',
+        ]);
+
+        $student = new Student([
+            'code' => $request->get('code'),
+            'name' => $request->get('name'),
+            'gender' => $request->get('gender'),
+            'birth_place' => $request->get('birth_place'),
+            'birth_date' => $request->get('birth_date')
+        ]);
+        $student->save();
+        return redirect('/student')->with('success', 'Student Saved!');
     }
 
     /**
@@ -60,7 +74,8 @@ class StudentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $student = Student::find($id);
+        return view('student.edit', compact('student'));
     }
 
     /**
@@ -72,7 +87,23 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'code'=>'required',
+            'name'=>'required',
+            'gender'=>'required',
+            'birth_place'=>'required',
+            'birth_date'=>'required',
+        ]);
+
+        $student = Student::find($id);
+        $student->code = $request->get('code');
+        $student->name = $request->get('name');
+        $student->gender = $request->get('gender');
+        $student->birth_place = $request->get('birth_place');
+        $student->birth_date = $request->get('birth_date');
+        $student->save();
+
+        return redirect('/student')->with('success', 'Student Updated!');
     }
 
     /**
@@ -83,6 +114,9 @@ class StudentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $student = Student::find($id);
+        $student->delete();
+
+        return redirect('/student')->with('success', 'Student Deleted!');
     }
 }
